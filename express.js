@@ -5,7 +5,7 @@ global.DEBUG = 'true';
 
 const { getActors, getActorById } = require('./services/actors.dal')
 
-const { getAllFilmsForAllActors } = require('./services/films.dal')
+const { getAllFilmsForAllActors, getFilmById } = require('./services/films.dal')
 
 const port = 3000; 
 
@@ -44,6 +44,14 @@ app.get ('/films', async(request,response)=>{
     let theFilms = await getAllFilmsForAllActors(); // fetch films from postgresql
     response.write(JSON.stringify(theFilms)); 
     response.end();
+})
+
+app.get('/films/:id', async(request,response)=>{
+    if (DEBUG)console.log('/films/:id route');
+    let theFilm = await getFilmById(request.params.id); // fetch film from postgresql
+    response.write(JSON.stringify(theFilm));
+    response.end();
+
 })
 
 app.get('/actors/:id', async(request,response)=>{
