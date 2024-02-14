@@ -24,7 +24,7 @@ var getActors = function() {
 
 var getActorById = function(theId) {
   if(DEBUG) console.log("actors.dal.getActorById()");
-  console.log(`The actor id is ${theId}`);
+  if (DEBUG)console.log(`The actor id is ${theId}`);
 
   return new Promise(function(resolve, reject) {
 
